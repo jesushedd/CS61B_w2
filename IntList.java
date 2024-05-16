@@ -1,11 +1,16 @@
 public class IntList {
+    
+    /*Instance variables */
     public int first;
     public IntList rest;
     
+    
+    /*Constructor for intlist */
     public IntList(int f, IntList r){
         first = f;
         rest = r; 
     }
+
 
     /*Non recursive size method */
     public int sizeLoop(){
@@ -19,6 +24,8 @@ public class IntList {
         return size;
     }
 
+
+    /*Recrusive size method */
     public int sizeRec(){
         if (rest == null) {
             return 1;
@@ -26,6 +33,17 @@ public class IntList {
         return 1 + this.rest.sizeRec();
         }
     }
+
+
+    /*get the element in nth position */
+    public int get(int n){
+        if (n == 0) {
+            return first;
+        } else {
+            return this.rest.get(n -1);
+        }
+    }
+
 
     public static void main(String[] args) {
         /*crear nodo  head "L" y rellenarlo de adelante hacia atras
@@ -39,11 +57,13 @@ public class IntList {
         L.rest.rest = new IntList();
         L.rest.rest.first = 15;*/
 
-        IntList L = new IntList(10, null);
+        IntList L = new IntList(25, null);
         L = new IntList(10, L);
         L = new IntList(5, L);
         System.out.println(L.sizeLoop());
-        System.out.println(L.sizeRec());
-
+        //System.out.println(L.sizeRec());
+        System.out.println("El elemento 0 de la lista es: " + L.get(0));
+        System.out.println("El elemento 1 de la lista es: " + L.get(1));
+        System.out.println("El elemento 2 de la lista es: " + L.get(2));
     }
 }
