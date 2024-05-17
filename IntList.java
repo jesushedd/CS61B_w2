@@ -13,7 +13,7 @@ public class IntList {
 
 
     /*Non recursive size method */
-    public int sizeLoop(){
+    public int iterativeSize(){
         int size = 0;
         IntList cursor = this;
         while (cursor != null) {
@@ -26,11 +26,11 @@ public class IntList {
 
 
     /*Recrusive size method */
-    public int sizeRec(){
+    public int size(){
         if (rest == null) {
             return 1;
         } else{
-        return 1 + this.rest.sizeRec();
+        return 1 + this.rest.size();
         }
     }
 
@@ -41,6 +41,16 @@ public class IntList {
             return first;
         } else {
             return this.rest.get(n -1);
+        }
+    }
+
+
+    /*Print all elements in list */
+    public void printList(){
+        IntList cursor = this;
+        while (cursor != null) {
+          System.out.println(cursor.first);
+          cursor = cursor.rest;
         }
     }
 
@@ -60,8 +70,8 @@ public class IntList {
         IntList L = new IntList(25, null);
         L = new IntList(10, L);
         L = new IntList(5, L);
-        System.out.println(L.sizeLoop());
-        //System.out.println(L.sizeRec());
+        System.out.println(L.iterativeSize());
+        //System.out.println(L.size());
         System.out.println("El elemento 0 de la lista es: " + L.get(0));
         System.out.println("El elemento 1 de la lista es: " + L.get(1));
         System.out.println("El elemento 2 de la lista es: " + L.get(2));
