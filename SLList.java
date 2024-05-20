@@ -1,5 +1,5 @@
 public class SLList {
-    public class IntNode {
+    private static class IntNode {
     
         /*Instance variables */
         public int item;
@@ -7,7 +7,7 @@ public class SLList {
         
         
         /*Constructor for IntNode */
-        public IntNode(int i, IntNode r){
+        private IntNode(int i, IntNode r){
             item = i;
             next = r; 
         }
@@ -20,21 +20,63 @@ public class SLList {
         first = new IntNode(x, null);
     }
 
+    /*Adds an item to start of the list */
     public void addFirst(int num){
         IntNode toAdd = new IntNode(num, first);
         first = toAdd; 
     }
 
+    /*Gets the first item in the list */
     public int getFirst(){
         return first.item;
     }
 
+    /*Gets las item in the list */
+    public void addLast(int num){
+        IntNode cursor = this.first;
+        //Reach the last element of the list
+        while (cursor.next != null) {
+            cursor = cursor.next;
+        }
+
+        //Add the item to that found.next end of the list
+        cursor.next = new IntNode(num, null);
+    }
+
+    /*Print all items in list */
+    public void printList(){
+        IntNode cursor = this.first;
+        while (cursor != null) {
+            System.out.println(cursor.item);
+            cursor = cursor.next ;
+        }
+    }
+
+    /*Get size of the list */
+    public int size(){
+        IntNode cursor = this.first;
+        int s = 0;
+        /*Look for end of list */
+        while (cursor != null) {
+            s++;
+            cursor = cursor.next;
+        }
+        return s;
+
+    }
+
+
     public static void main(String[] args) {
         /*Crates a list of one integer, 10 */
-        SLList L = new SLList(10);
-        L.addFirst(35);
-        L.addFirst(55);
-        System.out.println(L.getFirst());
+        SLList L = new SLList(70);
+        L.addFirst(60);
+        L.addFirst(40);
+        L.addLast(80);
+        //System.out.println(L.getFirst());
+        L.printList();
+        System.out.println("size of shis list is: " + L.size());
+
+
 
     }
 
