@@ -1,4 +1,17 @@
 public class SLList {
+    public class IntNode {
+    
+        /*Instance variables */
+        public int item;
+        public IntNode next;
+        
+        
+        /*Constructor for IntNode */
+        public IntNode(int i, IntNode r){
+            item = i;
+            next = r; 
+        }
+    }   
     //public int item;
     // made it private to no mess with implementation from other classes
     private IntNode first;
