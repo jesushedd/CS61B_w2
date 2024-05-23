@@ -29,12 +29,12 @@ public class DLList {
 
     public DLList(){
         size = 0;
-        sentFront = new IntNode(-1, null);
+        sentFront = new IntNode(-1, null, null);
     }
 
     /*Adds an item to start of the list */
     public void addFirst(int num){
-        sentFront.next = new IntNode(num, sentFront.next);
+        sentFront.next = new IntNode(num, sentFront, sentFront.next);
         size++;
     }
 
