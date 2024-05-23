@@ -76,14 +76,15 @@ public class DLList {
     }
 
     /*get and Remove last item (sentBack.prev)  */
-    public int removeLast(){
-        
-        int last = sentBack.prev.item;
+    public void removeLast(){
         IntNode secondToLast = sentBack.prev.prev;
         secondToLast.next = sentBack;
         sentBack.prev = secondToLast;
         size --; 
-        return last;
+    }
+
+    public int getLast(){
+        return sentBack.prev.item;
     }
 
     /*Print all items in list */
@@ -128,7 +129,8 @@ public class DLList {
         A.addFirst(99);
         A.addFirst(158);
         A.printList();
-        System.out.println("Item that was removed (last in list): " + A.removeLast());
+        System.out.println("Item that was removed (last in list): "+ A.getLast());
+        A.removeLast();
         System.out.println("New state of list:");
         A.printList();
 
