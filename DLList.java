@@ -8,10 +8,10 @@ public class DLList {
         
         
         /*Constructor for IntNode */
-        private IntNode(int i, IntNode p, IntNode n){
+        private IntNode(int i, IntNode previousNode, IntNode nextNode){
             item = i;
-            prev = p;
-            next = n; 
+            prev = previousNode;
+            next = nextNode; 
         }
     }   
     //public int item;
@@ -41,11 +41,14 @@ public class DLList {
 
     /*Adds an item to start of the list */
     public void addFirst(int num){
-        sentFront.next = new IntNode(num, sentFront, sentFront.next);
+        //IntNode newNode = new IntNode(num, null, null)
+        IntNode newNode = new IntNode(num, sentFront, sentFront.next);
         //In case it's first item added
         if (size == 0) {
-            sentBack.prev = sentFront.next;
+            sentBack.prev = newNode;
         }
+        sentFront.next = newNode;
+        newNode.next.prev = newNode;
         size++; 
     }
 
@@ -70,6 +73,17 @@ public class DLList {
             sentFront.next = sentBack.prev;
         }
         size++;
+    }
+
+    /*get and Remove last item (sentBack.prev)  */
+    public int removeLast(){
+        
+        int last = sentBack.prev.item;
+        IntNode secondToLast = sentBack.prev.prev;
+        secondToLast.next = sentBack;
+        sentBack.prev = secondToLast;
+        size --; 
+        return last;
     }
 
     /*Print all items in list */
@@ -103,7 +117,7 @@ public class DLList {
     }*/
     // Get size of list using recursive helper method
     public int size(){
-        return size(sentFront.next);
+        return this.size;
     }
 
 
@@ -114,7 +128,9 @@ public class DLList {
         A.addFirst(99);
         A.addFirst(158);
         A.printList();
-        DLList L = new DLList(70);
+        System.out.println("Item that was removed (last in list): " + A.removeLast());
+        System.out.println("New state of list:");
+        A.printList();
 
 
 
